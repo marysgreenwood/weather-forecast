@@ -7,8 +7,43 @@ function getWeather(){
     .then(function (response) {
         return response.json();
       })
-      
+    .then (function (data){
+        var cityLat=data[0].lat;
+        var cityLon=data[0].lon;
+       fetch('https://api.openweathermap.org/data/2.5/forecast?lat='+cityLat+'&lon='+cityLon+'&units=imperial&appid=87b47c01e60a827a975548f9534bb2bf',)
+       .then (function (response) {
+        return response.json();
+      })
+    .then (function (data){
+        console.log (data);
+        var currentCity= data.city.name;
+        var cityHeading=document.getElementById('current-city')
+        cityHeading.textContent=currentCity;
+        for (var i=0, j=0; i<40; i +=8, j++){
+            var iconCode= data.list[i].weather[0].icon;
+            var iconUrl='http://openweathermap.org/img/wn/'+iconCode+'.png';
+            var weatherDate=data.list[i].dt*1000;
+            weatherDate=new Date(weatherDate);
+           weatherDate=weatherDate.toLocaleString('en-US');
+           weatherDate=weatherDate.slice(0,10);
+           var temperature=data.list[i].main.temp;
+           var windSpeed=data.list[i].wind.speed;
+           var currentHumidity=data.list[i].main.humidity;
+           if (i=0){
+            console.log(weatherDate)
+            dateHeading=document.getElementById('date-one');
+            debugger
+            dateHeading.textContent=weatherDate;
+           }
+           
+
+       }
+    })
+    })
 }
+    
+      
+
 
 //save user input to local storage
 function saveSearch(){
@@ -19,7 +54,11 @@ function saveSearch(){
         lastSearch.setAttribute("class", "list-item")
         document.getElementById("previous-searches").appendChild (lastSearch);
        var previousSearches = JSON.parse (window.localStorage.getItem ('previousSearches')) || [];
-       previousSearches.push (userCity);
+       console.log(previousSearches);
+       previousSearches.push(userCity);
+       if (previousSearches.length >10){
+        previousSearches=previousSearches.shift();
+       }
        window.localStorage.setItem ('previousSearches', JSON.stringify (previousSearches))
       
     }
@@ -51,5 +90,5 @@ searchButton.addEventListener("click", function(event) {
 }
 )
 displaySearches();
-//api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+//
 //API key: 87b47c01e60a827a975548f9534bb2bf
