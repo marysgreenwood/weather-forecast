@@ -19,7 +19,8 @@
   </header>
 
 
-  <main class="flex-row justify-flex-start">
+  <main class="justify-flex-start">
+    <div class="flex-row">
     <div class="col-12 col-md-2">
 
       <div class="card">
@@ -41,7 +42,7 @@
      
    
     <div hidden class="col-12 col-md-10" id="main-display"> 
-      <div class="card" id="current-weather">
+      <div class="card col-12 md-10" id="current-weather">
         <h2 class="card-header" id="current-city"></h2>
         <p id="current-date"></p>
         <img alt="Weather Icon" id="current-icon"> 
@@ -49,7 +50,8 @@
         <p>Wind speed: <span id="current-wind"></span></p>
         <p>Humidity: <span id="current-humidity"></span></p>
       </div>
-    </div>
+    
+    
     <div  class="col-6 col-md-2" hidden>
       <div class="card" id="day-one">
         <h2 class="cardheader" id="date-one"></h2>
@@ -58,7 +60,7 @@
         <p>Wind speed: <span id="wind-one"></span></p>
         <p>Humidity: <span id="humidity-one"></span></p>
       </div>
-    </div>
+    
     <div  class="col-6 col-md-2" hidden>
       <div class="card" id="day-two">
         <h2 class="cardheader" id="date-two"></h2>
@@ -95,7 +97,8 @@
         <p>Humidity: <span id="humidity-five"></span></p>
       </div>
     </div> 
-  
+  </div>
+</div>
     
     
   </main>

@@ -129,6 +129,15 @@
   .list-item:hover {
     background-color: var(--dark);
   }
+
+  #current-weather{
+    margin-left: 5%;
+  }
+  
+  #day-one, #day-two, #day-three, #day-four, #day-five {
+    margin-left: 5%;
+  }
+
   
   /*.status-icon {
     padding: 2px 5px;
