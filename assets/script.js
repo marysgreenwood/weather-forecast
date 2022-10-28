@@ -30,6 +30,8 @@ var humidityThree=document.getElementById('humidity-three');
 var humidityFour=document.getElementById('humidity-four');
 var humidityFive=document.getElementById('humidity-five');
 var fiveDayHumidity=[humidityOne, humidityTwo, humidityThree, humidityFour, humidityFive]
+
+
 function getWeather(){
     var city=userCityEl.value.trim();
     fetch('https://api.openweathermap.org/geo/1.0/direct?q='+city+'&limit=1&appid=87b47c01e60a827a975548f9534bb2bf',)
@@ -44,7 +46,6 @@ function getWeather(){
         return response.json();
       })
     .then (function (data){
-        //console.log (data);
         var currentCity= data.city.name;
         var cityHeading=document.getElementById('current-city')
         cityHeading.textContent=currentCity;
@@ -139,22 +140,25 @@ searchButton.addEventListener("click", function(event) {
 }
 )
 
-/*function to display weather for search history
-document.ul.child.addEventListener("click", function(event){
-    event.preventDefault();
-    userCityEl.value=target.textContent;
-    var results=document.querySelectorAll('.col-6')
-    for (var i=0; i<results.length; i++){
-        results[i].removeAttribute("hidden");
-
-    }
-    var mainDisplay=document.getElementById('main-display')
-    mainDisplay.removeAttribute('hidden')
-    saveSearch();
-    getWeather();
-    userCityEl.value='';
-})*/
 displaySearches();
+
+//display weather for cities from search history
+var pastSearch=document.querySelectorAll('.list-item');
+pastSearch.forEach(function (item, idx) {
+    item.addEventListener('click', function (event) {
+        event.preventDefault
+        var results=document.querySelectorAll('.col-6')
+        for (var i=0; i<results.length; i++){
+          results[i].removeAttribute("hidden");
+
+        }
+        var mainDisplay=document.getElementById('main-display')
+        mainDisplay.removeAttribute('hidden')
+        userCityEl.value=item.innerHTML;
+        getWeather();
+        userCityEl.value=''
+    });
+});
 
 
 //
