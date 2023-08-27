@@ -5,7 +5,9 @@
 ## Description
 
 URL: https://marysgreenwood.github.io/weather-forecast/
-![screenshot] (./assets/weatherDashboard.png)
+
+![screenshot](./assets/weatherDashboard.png)
+
 This application interfaces with the National Weather Database to provide information about upcoming weather in the location specified by the user.
 The dashboard fetches data from the openweathermap API: https://openweathermap.org/api
 
